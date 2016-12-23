@@ -6,7 +6,6 @@ local HAMMER_OF_JUSTICE = 853
 local BLESSING_OF_MIGHT = 19740
 local JUDGEMENT_OF_LIGHT = 20271
 local ProtectionSpells = {498,1022,633}
-local numbers = {"1","2","3"}
 
 --Timer Function
 function wait(seconds)
@@ -14,6 +13,7 @@ function wait(seconds)
   repeat until os.time() > start + seconds
 end
 
+--Spell Functions
 function HammerOfJustice(event, delay, repeats, creature)
 	local Victim = creature:GetVictim()
 	if (Victim:IsCasting() and not creature:IsCasting()) then
@@ -53,7 +53,8 @@ function AddAura(event, delay, repeats, creature)
 	creature:CastSpell(creature,DEVOTION_AURA, true)
 end
 
-function deadText(event, delay, repeats, creature)
+function CombatDeadText(event, delay, repeats, creature)
+	wait(1)
 	creature:SendUnitSay("Now , you can loot my treasures",0)
 	wait(1)
 	creature:SendUnitSay("We meet each other at level 20",0)
@@ -98,7 +99,7 @@ function OnLeaveCombat(event,creature,killer)
 end
 
 function OnDied(event,creature,killer)
-	creature:RegisterEvent(deadText)
+	creature:RegisterEvent(CombatDeadText,3000,1)
 	creature:RemoveEvents()
 end
 
