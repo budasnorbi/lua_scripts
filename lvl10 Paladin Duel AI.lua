@@ -8,16 +8,11 @@ local JUDGEMENT_OF_LIGHT = 20271
 local ProtectionSpells = {498,1022,633}
 local texts = {
 	"Now , you can loot my treasures",
-	"We meet each other at level 20",
-	"The duel is started"
+	"We meet each other at level 20"
 }
 
---Timer Function: can use inside every function . 
-function wait(seconds)
-  local start = os.time()
-  repeat until os.time() > start + seconds
-end
-
+local TimerAi = require("Timer");
+local GossipAI = require("Gossip AI");
 
 -- SPELL TRIGGERS
 
@@ -69,30 +64,6 @@ function AddAura(event, delay, repeats, creature)
 	creature:CastSpell(creature,DEVOTION_AURA, true)
 end
 
---Gossip function
-function Gossip(event, player, unit)
-	player:GossipClearMenu()
-    player:GossipMenuAddItem(0, "Are you ready for the duel ?", 0, 1)
-    player:GossipSendMenu(1, unit)
-end
-
---When the player selected this gossip item . These function will be activated .
-function OnGossipSelect(event, player, unit, sender, intid, code)
-	if(intid == 1) then
-		player:GossipComplete()
-        unit:SendUnitSay("3",0)
-        wait(1)
-		unit:SendUnitSay("2",0)
-		wait(1)
-		unit:SendUnitSay("1",0)
-		wait(1)
-		unit:SendUnitSay(texts[3],0)
-        unit:SetNPCFlags(0)
-        unit:SetFaction(14)
-        unit:AttackStart(player)
-    end
-end
-
 --Events
 function OnEnterCombat(event,creature)
 	creature:RegisterEvent(HolyLight,6000,0)
@@ -125,3 +96,4 @@ RegisterCreatureEvent(NPC_ID,4,OnDied)
 --Create Gossip Events
 RegisterCreatureGossipEvent(NPC_ID, 1, Gossip)
 RegisterCreatureGossipEvent(NPC_ID, 2, OnGossipSelect)
+
