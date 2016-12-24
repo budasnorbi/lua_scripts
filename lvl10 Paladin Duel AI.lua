@@ -69,14 +69,6 @@ function AddAura(event, delay, repeats, creature)
 	creature:CastSpell(creature,DEVOTION_AURA, true)
 end
 
---When the creature is going to death . These texts will be displayed.
-function CombatDeadText(event, delay, repeats, creature)
-	wait(1)
-	creature:SendUnitSay(texts[1],0)
-	wait(1)
-	creature:SendUnitSay(texts[2],0)
-end
-
 --Gossip function
 function Gossip(event, player, unit)
 	player:GossipClearMenu()
@@ -118,7 +110,10 @@ function OnLeaveCombat(event,creature,killer)
 end
 
 function OnDied(event,creature,killer)
-	creature:RegisterEvent(CombatDeadText,3000,1)
+	wait(1)
+	creature:SendUnitSay(texts[1],0)
+	wait(1)
+	creature:SendUnitSay(texts[2],0)
 	creature:RemoveEvents()
 end
 
