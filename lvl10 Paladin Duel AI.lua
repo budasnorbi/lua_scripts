@@ -1,4 +1,4 @@
-local NPC_ID = 45000
+local NPC = 45000
 local HOLY_LIGHT_RANK_2 = 639
 local SEAL_OF_RIGHTEOUSNESS = 21084
 local DEVOTION_AURA = 10290
@@ -11,8 +11,9 @@ local texts = {
 	"We meet each other at level 20"
 }
 
-local TimerAi = require("Timer");
+local TimerAi = require("Timer AI");
 local GossipAI = require("Gossip AI");
+
 
 -- SPELL TRIGGERS
 
@@ -89,11 +90,11 @@ function OnDied(event,creature,killer)
 end
 
 --Creature Events
-RegisterCreatureEvent(NPC_ID,1,OnEnterCombat);
-RegisterCreatureEvent(NPC_ID,2,OnLeaveCombat);
-RegisterCreatureEvent(NPC_ID,4,OnDied)
+RegisterCreatureEvent(NPC,1,OnEnterCombat);
+RegisterCreatureEvent(NPC,2,OnLeaveCombat);
+RegisterCreatureEvent(NPC,4,OnDied)
 
 --Create Gossip Events
-RegisterCreatureGossipEvent(NPC_ID, 1, Gossip)
-RegisterCreatureGossipEvent(NPC_ID, 2, OnGossipSelect)
+RegisterCreatureGossipEvent(NPC, 1, Gossip)
+RegisterCreatureGossipEvent(NPC, 2, OnGossipSelect)
 
