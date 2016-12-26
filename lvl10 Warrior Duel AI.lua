@@ -21,9 +21,15 @@ function AddAura(event, delay, repeats, creature)
 	creature:CastSpell(creature,BATTLE_STANCE, false)
 end
 
+function GetRangePlayer(event, delay, repeats, creature)
+	print(creature:GetNearestPlayer(8,1))
+end
+
 --Events
 function OnEnterCombat(event,creature)
+	creature:RegisterEvent(GetRangePlayer,250,1)
 	creature:RegisterEvent(AddAura,1000,1)
+	
 end
 
 function OnLeaveCombat(event,creature,killer)
