@@ -7,7 +7,7 @@ end
 
 --When the player selected this gossip item . These function will be activated .
 function OnGossipSelect(event, player, unit, sender, intid, code)
-<<<<<<< HEAD
+
 	if(intid == 1) then
 		player:GossipComplete()
         unit:SendUnitSay("3",0)
@@ -19,21 +19,11 @@ function OnGossipSelect(event, player, unit, sender, intid, code)
 		unit:SendUnitSay("The duel is started",0)
         unit:SetNPCFlags(0)
         unit:SetFaction(14)
-        unit:AttackStart(sender)
+        unit:AttackStart(unit)
+
+                
     end
-=======
-	player:GossipComplete()
-    unit:SendUnitSay("3",0)
-    wait(1)
-	unit:SendUnitSay("2",0)
-	wait(1)
-	unit:SendUnitSay("1",0)
-	wait(1)
-	unit:SendUnitSay("The duel is started",0)
-    unit:SetNPCFlags(0)
-    unit:SetFaction(14)
-    unit:AttackStart(player)
->>>>>>> origin/master
+
 end
 
 

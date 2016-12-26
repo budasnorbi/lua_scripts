@@ -74,14 +74,14 @@ function OnEnterCombat(event,creature)
 	creature:RegisterEvent(HammerOfJustice,1500,0)
 end
 
-function OnLeaveCombat(event,creature,killer)
+function OnLeaveCombat(event,creature)
 	creature:RemoveEventById(16)
 	creature:SetNPCFlags(1)
 	creature:SetFaction(35)
 	creature:RemoveEvents()
 end
 
-function OnDied(event,creature,killer)
+function OnDied(event,creature)
 	wait(1)
 	creature:SendUnitSay(texts[1],0)
 	wait(1)
