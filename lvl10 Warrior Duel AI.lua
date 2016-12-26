@@ -1,6 +1,6 @@
 local NPC = 45001;
 local BATTLE_STANCE = 2457;
-local CHAREGE = 100;
+local CHAR GE = 100;
 local HAMSTRING = 1715;
 local HEROIC_STRIKE = 284;
 local REND = 6546;
@@ -16,6 +16,7 @@ local TimerAi = require("Timer AI");
 local GossipAI = require("Gossip AI");
 
 
+
 --Add Auras 
 function AddAura(event, delay, repeats, creature)
 	creature:CastSpell(creature,BATTLE_STANCE, false)
@@ -24,6 +25,8 @@ end
 --Events
 function OnEnterCombat(event,creature)
 	creature:RegisterEvent(AddAura,1000,1)
+	print(creature:GetNearestPlayer(8,1))
+
 end
 
 function OnLeaveCombat(event,creature,killer)
